@@ -1,15 +1,14 @@
 from math import ceil
 
-from flask import Flask
+from flask import Flask, send_file
 from db import get_db, select, select_one
 from status_code import *
 app = Flask(__name__)
 
 
-# @app.route('/')
-# def index():
-#     return status_response(STATUS_CODE_200)
-
+@app.route('/')
+def index():
+    return send_file('index.html')
 
 # 获取所有商品列表 API，/goods
 # return total_pages, current_page
@@ -22,7 +21,7 @@ app = Flask(__name__)
 #         data.append({'good_id': row[0], 'good_img': row[1], 'now_price': row[2], 'pefer_price': row[3], 'title': row[4], 'eva_num': row[5], 'goods_prma': row[6]})
 #     return data_response(STATUS_CODE_200, data)
 
-# 按页获取商品列表 API，/goods/<int:page>/<int:offset>
+# 按页获取商品列表 API，/api/goods/<int:page>/<int:offset>
 # 说明：前台发送 GET 请求，传入需要显示页面的页数 page，页数从 1 开始，以及每页想显示的条数 offset
 # return data, total_pages, current_page, total_items
 @app.route('/api/goods/<int:page>/<int:offset>')
@@ -41,14 +40,20 @@ def goods_list_page(page, offset):
     return data_with_page_response(STATUS_CODE_200, data, current_page=page, total_pages=total_page, total_items=total_items)
 
 
-# 获取某个单独的 API，/goods/<int:id>
-@app.route('/goods/<int:id>')
+# 获取某个商品的 API，/api/goods/<int:id>
+@app.route('/api/goods/<int:id>')
 def get_good_by_id(id):
     sql = "SELECT good_id, good_img, brand, now_price, pefer_price, title, taxation, explains, service, eva_score, eva_num, sun_num, goods_prma FROM goods WHERE good_id = %d" %id
     row = select_one(sql)
-    data = []
-    data.append({'good_id': row[0], 'good_img': row[1], 'brand': row[2], 'now_price': row[3], 'pefer_price': row[4], 'title': row[5], 'taxation': row[6], 'explains': row[7], 'service': row[8], 'eva_score': row[9], 'eva_num': row[10], 'sun_num': row[11], 'goods_prma': row[12]})
+    data = [{'good_id': row[0], 'good_img': row[1], 'brand': row[2], 'now_price': row[3], 'pefer_price': row[4],
+             'title': row[5], 'taxation': row[6], 'explains': row[7], 'service': row[8], 'eva_score': row[9],
+             'eva_num': row[10], 'sun_num': row[11], 'goods_prma': row[12]}]
     return data_response(STATUS_CODE_200, data)
+
+# 返回页面
+@app.route('/detail/<int:id>')
+def detail(id):
+    return send_file('detail.html')
 
 if __name__ == '__main__':
     app.run()
