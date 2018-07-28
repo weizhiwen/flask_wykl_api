@@ -42,7 +42,7 @@ def goods_list_page(page, offset):
 
 
 # 获取某个单独的 API，/goods/<int:id>
-@app.route('/api/goods/<int:id>')
+@app.route('/goods/<int:id>')
 def get_good_by_id(id):
     sql = "SELECT good_id, good_img, brand, now_price, pefer_price, title, taxation, explains, service, eva_score, eva_num, sun_num, goods_prma FROM goods WHERE good_id = %d" %id
     row = select_one(sql)
