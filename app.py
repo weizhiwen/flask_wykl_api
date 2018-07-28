@@ -6,14 +6,14 @@ from status_code import *
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
-    return status_response(STATUS_CODE_200)
+# @app.route('/')
+# def index():
+#     return status_response(STATUS_CODE_200)
 
 
 # 获取所有商品列表 API，/goods
 # return total_pages, current_page
-# @app.route('/goods')
+# @app.route('/api/goods')
 # def goods_list():
 #     sql = "SELECT good_id, good_img, now_price, pefer_price, title, eva_num, goods_prma FROM goods"
 #     result = select(sql)
@@ -25,7 +25,7 @@ def index():
 # 按页获取商品列表 API，/goods/<int:page>/<int:offset>
 # 说明：前台发送 GET 请求，传入需要显示页面的页数 page，页数从 1 开始，以及每页想显示的条数 offset
 # return data, total_pages, current_page, total_items
-@app.route('/goods/<int:page>/<int:offset>')
+@app.route('/api/goods/<int:page>/<int:offset>')
 def goods_list_page(page, offset):
     sql = "SELECT COUNT(good_id) FROM goods"
     result = select_one(sql)
@@ -42,7 +42,7 @@ def goods_list_page(page, offset):
 
 
 # 获取某个单独的 API，/goods/<int:id>
-@app.route('/goods/<int:id>')
+@app.route('/api/goods/<int:id>')
 def get_good_by_id(id):
     sql = "SELECT good_id, good_img, brand, now_price, pefer_price, title, taxation, explains, service, eva_score, eva_num, sun_num, goods_prma FROM goods WHERE good_id = %d" %id
     row = select_one(sql)
