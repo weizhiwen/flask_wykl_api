@@ -31,12 +31,13 @@ def goods_list_page(page, offset):
     result = select_one(sql)
     total_items = result[0] # 总条数
     total_page = int(ceil(total_items / offset)) # 总页数
-    start = (page - 1) * offset
-    sql = "SELECT good_id, good_img, now_price, pefer_price, title, eva_num, goods_prma FROM goods LIMIT %d, %d" %(start, offset)
-    result = select(sql)
     data = []
-    for row in result:
-        data.append({'good_id': row[0], 'good_img': row[1], 'now_price': row[2], 'pefer_price': row[3], 'title': row[4], 'eva_num': row[5], 'goods_prma': row[6]})
+    if page > 0 or page <= total_page:
+        start = (page - 1) * offset
+        sql = "SELECT good_id, good_img, now_price, pefer_price, title, eva_num, goods_prma FROM goods LIMIT %d, %d" %(start, offset)
+        result = select(sql)
+        for row in result:
+            data.append({'good_id': row[0], 'good_img': row[1], 'now_price': row[2], 'pefer_price': row[3], 'title': row[4], 'eva_num': row[5], 'goods_prma': row[6]})
     return data_with_page_response(STATUS_CODE_200, data, current_page=page, total_pages=total_page, total_items=total_items)
 
 
