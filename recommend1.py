@@ -1,7 +1,6 @@
 from operator import itemgetter
-from collections import OrderedDict
 
-from db import select, select_one
+from db import select
 
 # 读出所要的数据并形成矩阵
 def get_data(good_id):

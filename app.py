@@ -3,7 +3,7 @@ from math import ceil
 from flask import Flask, send_file
 from db import select, select_one
 from status_code import *
-from recommend import recommend1
+from recommend1 import recommend1
 app = Flask(__name__)
 
 
@@ -12,15 +12,15 @@ def index():
     return send_file('index.html')
 
 # 获取所有商品列表 API，/goods
-# return total_pages, current_page
-# @app.route('/api/goods')
-# def goods_list():
-#     sql = "SELECT good_id, good_img, now_price, pefer_price, title, eva_num, goods_prma FROM goods"
-#     result = select(sql)
-#     data = []
-#     for row in result:
-#         data.append({'good_id': row[0], 'good_img': row[1], 'now_price': row[2], 'pefer_price': row[3], 'title': row[4], 'eva_num': row[5], 'goods_prma': row[6]})
-#     return data_response(STATUS_CODE_200, data)
+# # return total_pages, current_page
+# # @app.route('/api/goods')
+# # def goods_list():
+# #     sql = "SELECT good_id, good_img, now_price, pefer_price, title, eva_num, goods_prma FROM goods"
+# #     result = select(sql)
+# #     data = []
+# #     for row in result:
+# #         data.append({'good_id': row[0], 'good_img': row[1], 'now_price': row[2], 'pefer_price': row[3], 'title': row[4], 'eva_num': row[5], 'goods_prma': row[6]})
+# #     return data_response(STATUS_CODE_200, data)
 
 # 按页获取商品列表 API，/api/goods/<int:page>/<int:offset>
 # 说明：前台发送 GET 请求，传入需要显示页面的页数 page，页数从 1 开始，以及每页想显示的条数 offset
@@ -58,6 +58,8 @@ def get_recommend_goods(good_id, count):
     # print('传过来的值为 recommend_id：' + str(recommend_id) + 'good_id：' + str(good_id) + 'count：' + str(count))
     data = recommend1(good_id, count)
     return data_response(STATUS_CODE_200, data)
+
+
 
 
 # 返回页面

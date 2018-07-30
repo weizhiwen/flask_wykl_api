@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Air_local
-Source Server Version : 50713
+Source Server         : weizhiwen
+Source Server Version : 50717
 Source Host           : localhost:3306
-Source Database       : kaola
+Source Database       : wykl
 
 Target Server Type    : MYSQL
-Target Server Version : 50713
+Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-07-28 14:39:55
+Date: 2018-07-30 15:35:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -451,3 +451,455 @@ INSERT INTO `goods` VALUES ('408', '//haitao.nos.netease.com/ijjymcy814_800_800.
 INSERT INTO `goods` VALUES ('409', '//haitao.nosdn2.127.net/b4ad4da0b2be44dc9db08b13e3c666e21508500589396j8zuaw5s12861.jpg?imageView&thumbnail=64x0&quality=85', 'nooni', '68', '169', 'nooni 焕采透亮清爽气垫防晒霜 15克', '7.62', '会员96折,支持7天无忧退货', '自营保税仓', '88', '25', '6', '适合肤质：任何肤质,妆效：自然,功能：防晒　定妆　滋润,适用群体：女,质地：其他,适用部位：面部,产品类型：气垫CC,是否防晒：是,保质期：3年,品名：nooni 焕采透亮清爽气垫防晒霜 15克,产地：韩国');
 INSERT INTO `goods` VALUES ('410', '//haitao.nosdn2.127.net/in1r2g6q96_800_800.jpg?imageView&thumbnail=64x0&quality=85,//haitao.nosdn1.127.net/in1r2ggu9_800_800.jpg?imageView&thumbnail=64x0&quality=85', 'THE BODY SHOP 美体小铺', '58', '179', 'THE BODY SHOP 美体小铺 茶树哑致无瑕BB霜 #02 40毫升 护肤底妆', '', '会员96折,支持7天无忧退货', '自营保税仓', '88', '140', '13', '适合肤质：任何肤质,功能：防晒　遮瑕　定妆　隔离　收敛毛孔,质地：乳霜,产品类型：BB霜,保质期：3年,品名：茶树哑致无瑕BB霜 #02,产地：英国');
 INSERT INTO `goods` VALUES ('411', '//haitao.nosdn1.127.net/efc7716601b64e169774f12b5f57f2191504767600494j7a3rzgy10259.jpg?imageView&thumbnail=64x0&quality=85,//haitao.nos.netease.com/8335166a1e7b465b9d9018384a4984f61504767600789j7a3rzp910260.jpg?imageView&thumbnail=64x0&quality=85,//haitao.nosdn1.127.net/d4a56563900347c4a92347849070ff341504767611190j7a3s7q510315.jpg?imageView&thumbnail=64x0&quality=85,//haitao.nos.netease.com/3ce5f90175d44d8d8fe19a57bd17cc8a1504767611491j7a3s7yl10316.jpg?imageView&thumbnail=64x0&quality=85,//haitao.nosdn2.127.net/35c8bf3c21c54b3a952b927ee113a7d41504767611763j7a3s86310317.jpg?imageView&thumbnail=64x0&quality=85', 'CLUB', '85', '105', 'CLUB 持久抗油毛孔隐形防晒润色魔法妆前隔离乳 30毫升', '', '会员96折,支持30天无忧退货', '自营国内仓', '0', '0', '0', '适合肤质：任何肤质,妆效：自然,质地：乳霜,功能：隔离　滋润,产品类型：隔离乳,保质期：3年,品名：CLUB 持久抗油毛孔隐形防晒润色魔法妆前隔离乳 30毫升,产地：日本,颜色：#01　#02');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户序号',
+  `name` varchar(25) NOT NULL COMMENT '用户名',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '小明');
+INSERT INTO `user` VALUES ('2', '小王');
+INSERT INTO `user` VALUES ('3', '小黑');
+INSERT INTO `user` VALUES ('4', '小白');
+INSERT INTO `user` VALUES ('5', '小志');
+INSERT INTO `user` VALUES ('6', '小张');
+INSERT INTO `user` VALUES ('7', '小伟');
+INSERT INTO `user` VALUES ('8', '小晓');
+INSERT INTO `user` VALUES ('9', '小光');
+INSERT INTO `user` VALUES ('10', '小飞');
+INSERT INTO `user` VALUES ('11', '小田');
+INSERT INTO `user` VALUES ('12', '小赵');
+INSERT INTO `user` VALUES ('13', '小思');
+INSERT INTO `user` VALUES ('14', '小瑞');
+INSERT INTO `user` VALUES ('15', '小魏');
+INSERT INTO `user` VALUES ('16', '小志');
+INSERT INTO `user` VALUES ('17', '小文');
+INSERT INTO `user` VALUES ('18', '小杨');
+INSERT INTO `user` VALUES ('19', '小红');
+INSERT INTO `user` VALUES ('20', '小明');
+
+-- ----------------------------
+-- Table structure for user_good
+-- ----------------------------
+DROP TABLE IF EXISTS `user_good`;
+CREATE TABLE `user_good` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '购买记录序号',
+  `userId` int(10) unsigned NOT NULL,
+  `goodId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `user_good_ibfk_2` (`goodId`),
+  CONSTRAINT `user_good_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_good_ibfk_2` FOREIGN KEY (`goodId`) REFERENCES `goods` (`good_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=400 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_good
+-- ----------------------------
+INSERT INTO `user_good` VALUES ('1', '13', '310');
+INSERT INTO `user_good` VALUES ('2', '12', '311');
+INSERT INTO `user_good` VALUES ('3', '16', '140');
+INSERT INTO `user_good` VALUES ('4', '3', '271');
+INSERT INTO `user_good` VALUES ('5', '2', '276');
+INSERT INTO `user_good` VALUES ('6', '17', '135');
+INSERT INTO `user_good` VALUES ('7', '15', '348');
+INSERT INTO `user_good` VALUES ('8', '8', '293');
+INSERT INTO `user_good` VALUES ('9', '5', '77');
+INSERT INTO `user_good` VALUES ('10', '14', '298');
+INSERT INTO `user_good` VALUES ('11', '17', '347');
+INSERT INTO `user_good` VALUES ('12', '19', '114');
+INSERT INTO `user_good` VALUES ('13', '9', '177');
+INSERT INTO `user_good` VALUES ('14', '1', '181');
+INSERT INTO `user_good` VALUES ('15', '8', '172');
+INSERT INTO `user_good` VALUES ('16', '5', '288');
+INSERT INTO `user_good` VALUES ('17', '17', '176');
+INSERT INTO `user_good` VALUES ('18', '13', '85');
+INSERT INTO `user_good` VALUES ('19', '4', '131');
+INSERT INTO `user_good` VALUES ('20', '2', '166');
+INSERT INTO `user_good` VALUES ('21', '15', '351');
+INSERT INTO `user_good` VALUES ('22', '3', '149');
+INSERT INTO `user_good` VALUES ('23', '4', '118');
+INSERT INTO `user_good` VALUES ('24', '5', '176');
+INSERT INTO `user_good` VALUES ('25', '19', '123');
+INSERT INTO `user_good` VALUES ('26', '14', '209');
+INSERT INTO `user_good` VALUES ('27', '9', '332');
+INSERT INTO `user_good` VALUES ('28', '5', '253');
+INSERT INTO `user_good` VALUES ('29', '17', '119');
+INSERT INTO `user_good` VALUES ('30', '8', '314');
+INSERT INTO `user_good` VALUES ('31', '20', '296');
+INSERT INTO `user_good` VALUES ('32', '6', '214');
+INSERT INTO `user_good` VALUES ('33', '9', '361');
+INSERT INTO `user_good` VALUES ('34', '14', '148');
+INSERT INTO `user_good` VALUES ('35', '3', '333');
+INSERT INTO `user_good` VALUES ('36', '12', '158');
+INSERT INTO `user_good` VALUES ('37', '11', '382');
+INSERT INTO `user_good` VALUES ('38', '6', '243');
+INSERT INTO `user_good` VALUES ('39', '13', '80');
+INSERT INTO `user_good` VALUES ('40', '4', '31');
+INSERT INTO `user_good` VALUES ('41', '3', '107');
+INSERT INTO `user_good` VALUES ('42', '16', '323');
+INSERT INTO `user_good` VALUES ('43', '18', '181');
+INSERT INTO `user_good` VALUES ('44', '11', '370');
+INSERT INTO `user_good` VALUES ('45', '6', '142');
+INSERT INTO `user_good` VALUES ('46', '1', '298');
+INSERT INTO `user_good` VALUES ('47', '4', '393');
+INSERT INTO `user_good` VALUES ('48', '15', '397');
+INSERT INTO `user_good` VALUES ('49', '19', '163');
+INSERT INTO `user_good` VALUES ('50', '17', '24');
+INSERT INTO `user_good` VALUES ('51', '5', '74');
+INSERT INTO `user_good` VALUES ('52', '10', '393');
+INSERT INTO `user_good` VALUES ('53', '6', '245');
+INSERT INTO `user_good` VALUES ('54', '16', '219');
+INSERT INTO `user_good` VALUES ('55', '7', '223');
+INSERT INTO `user_good` VALUES ('56', '16', '65');
+INSERT INTO `user_good` VALUES ('57', '16', '386');
+INSERT INTO `user_good` VALUES ('58', '9', '201');
+INSERT INTO `user_good` VALUES ('59', '14', '362');
+INSERT INTO `user_good` VALUES ('60', '13', '380');
+INSERT INTO `user_good` VALUES ('61', '3', '123');
+INSERT INTO `user_good` VALUES ('62', '7', '368');
+INSERT INTO `user_good` VALUES ('63', '1', '180');
+INSERT INTO `user_good` VALUES ('64', '19', '321');
+INSERT INTO `user_good` VALUES ('65', '11', '75');
+INSERT INTO `user_good` VALUES ('66', '10', '105');
+INSERT INTO `user_good` VALUES ('67', '19', '290');
+INSERT INTO `user_good` VALUES ('68', '7', '70');
+INSERT INTO `user_good` VALUES ('69', '13', '305');
+INSERT INTO `user_good` VALUES ('70', '18', '303');
+INSERT INTO `user_good` VALUES ('71', '17', '306');
+INSERT INTO `user_good` VALUES ('72', '7', '82');
+INSERT INTO `user_good` VALUES ('73', '12', '229');
+INSERT INTO `user_good` VALUES ('74', '9', '201');
+INSERT INTO `user_good` VALUES ('75', '20', '273');
+INSERT INTO `user_good` VALUES ('76', '1', '174');
+INSERT INTO `user_good` VALUES ('77', '19', '172');
+INSERT INTO `user_good` VALUES ('78', '11', '380');
+INSERT INTO `user_good` VALUES ('79', '5', '215');
+INSERT INTO `user_good` VALUES ('80', '5', '126');
+INSERT INTO `user_good` VALUES ('81', '16', '140');
+INSERT INTO `user_good` VALUES ('82', '1', '94');
+INSERT INTO `user_good` VALUES ('83', '16', '153');
+INSERT INTO `user_good` VALUES ('84', '20', '384');
+INSERT INTO `user_good` VALUES ('85', '9', '148');
+INSERT INTO `user_good` VALUES ('86', '2', '348');
+INSERT INTO `user_good` VALUES ('87', '8', '8');
+INSERT INTO `user_good` VALUES ('88', '7', '90');
+INSERT INTO `user_good` VALUES ('89', '18', '352');
+INSERT INTO `user_good` VALUES ('90', '19', '53');
+INSERT INTO `user_good` VALUES ('91', '15', '237');
+INSERT INTO `user_good` VALUES ('92', '3', '121');
+INSERT INTO `user_good` VALUES ('93', '13', '180');
+INSERT INTO `user_good` VALUES ('94', '10', '317');
+INSERT INTO `user_good` VALUES ('95', '18', '387');
+INSERT INTO `user_good` VALUES ('96', '7', '42');
+INSERT INTO `user_good` VALUES ('97', '14', '354');
+INSERT INTO `user_good` VALUES ('98', '5', '301');
+INSERT INTO `user_good` VALUES ('99', '4', '72');
+INSERT INTO `user_good` VALUES ('100', '5', '319');
+INSERT INTO `user_good` VALUES ('101', '11', '54');
+INSERT INTO `user_good` VALUES ('102', '15', '119');
+INSERT INTO `user_good` VALUES ('103', '1', '367');
+INSERT INTO `user_good` VALUES ('104', '2', '49');
+INSERT INTO `user_good` VALUES ('105', '15', '254');
+INSERT INTO `user_good` VALUES ('106', '19', '268');
+INSERT INTO `user_good` VALUES ('107', '14', '84');
+INSERT INTO `user_good` VALUES ('108', '17', '292');
+INSERT INTO `user_good` VALUES ('109', '14', '83');
+INSERT INTO `user_good` VALUES ('110', '12', '335');
+INSERT INTO `user_good` VALUES ('111', '13', '142');
+INSERT INTO `user_good` VALUES ('112', '17', '80');
+INSERT INTO `user_good` VALUES ('113', '9', '41');
+INSERT INTO `user_good` VALUES ('114', '20', '280');
+INSERT INTO `user_good` VALUES ('115', '1', '316');
+INSERT INTO `user_good` VALUES ('116', '11', '389');
+INSERT INTO `user_good` VALUES ('117', '16', '126');
+INSERT INTO `user_good` VALUES ('118', '7', '114');
+INSERT INTO `user_good` VALUES ('119', '7', '96');
+INSERT INTO `user_good` VALUES ('120', '1', '377');
+INSERT INTO `user_good` VALUES ('121', '20', '119');
+INSERT INTO `user_good` VALUES ('122', '11', '283');
+INSERT INTO `user_good` VALUES ('123', '12', '52');
+INSERT INTO `user_good` VALUES ('124', '5', '345');
+INSERT INTO `user_good` VALUES ('125', '18', '323');
+INSERT INTO `user_good` VALUES ('126', '2', '218');
+INSERT INTO `user_good` VALUES ('127', '5', '179');
+INSERT INTO `user_good` VALUES ('128', '13', '12');
+INSERT INTO `user_good` VALUES ('129', '17', '276');
+INSERT INTO `user_good` VALUES ('130', '19', '265');
+INSERT INTO `user_good` VALUES ('131', '12', '100');
+INSERT INTO `user_good` VALUES ('132', '4', '58');
+INSERT INTO `user_good` VALUES ('133', '15', '325');
+INSERT INTO `user_good` VALUES ('134', '10', '229');
+INSERT INTO `user_good` VALUES ('135', '12', '359');
+INSERT INTO `user_good` VALUES ('136', '4', '186');
+INSERT INTO `user_good` VALUES ('137', '5', '177');
+INSERT INTO `user_good` VALUES ('138', '6', '150');
+INSERT INTO `user_good` VALUES ('139', '6', '399');
+INSERT INTO `user_good` VALUES ('140', '14', '375');
+INSERT INTO `user_good` VALUES ('141', '11', '239');
+INSERT INTO `user_good` VALUES ('142', '2', '196');
+INSERT INTO `user_good` VALUES ('143', '1', '253');
+INSERT INTO `user_good` VALUES ('144', '9', '288');
+INSERT INTO `user_good` VALUES ('145', '17', '11');
+INSERT INTO `user_good` VALUES ('146', '20', '66');
+INSERT INTO `user_good` VALUES ('147', '7', '8');
+INSERT INTO `user_good` VALUES ('148', '16', '371');
+INSERT INTO `user_good` VALUES ('149', '7', '303');
+INSERT INTO `user_good` VALUES ('150', '18', '278');
+INSERT INTO `user_good` VALUES ('151', '18', '250');
+INSERT INTO `user_good` VALUES ('152', '6', '313');
+INSERT INTO `user_good` VALUES ('153', '8', '5');
+INSERT INTO `user_good` VALUES ('154', '10', '326');
+INSERT INTO `user_good` VALUES ('155', '17', '181');
+INSERT INTO `user_good` VALUES ('156', '8', '295');
+INSERT INTO `user_good` VALUES ('157', '16', '210');
+INSERT INTO `user_good` VALUES ('158', '8', '37');
+INSERT INTO `user_good` VALUES ('159', '18', '334');
+INSERT INTO `user_good` VALUES ('160', '12', '24');
+INSERT INTO `user_good` VALUES ('161', '18', '97');
+INSERT INTO `user_good` VALUES ('162', '5', '112');
+INSERT INTO `user_good` VALUES ('163', '7', '243');
+INSERT INTO `user_good` VALUES ('164', '3', '358');
+INSERT INTO `user_good` VALUES ('165', '20', '199');
+INSERT INTO `user_good` VALUES ('166', '13', '387');
+INSERT INTO `user_good` VALUES ('167', '14', '122');
+INSERT INTO `user_good` VALUES ('168', '6', '274');
+INSERT INTO `user_good` VALUES ('169', '9', '104');
+INSERT INTO `user_good` VALUES ('170', '8', '257');
+INSERT INTO `user_good` VALUES ('171', '14', '204');
+INSERT INTO `user_good` VALUES ('172', '5', '181');
+INSERT INTO `user_good` VALUES ('173', '2', '306');
+INSERT INTO `user_good` VALUES ('174', '11', '266');
+INSERT INTO `user_good` VALUES ('175', '14', '398');
+INSERT INTO `user_good` VALUES ('176', '18', '320');
+INSERT INTO `user_good` VALUES ('177', '10', '55');
+INSERT INTO `user_good` VALUES ('178', '12', '152');
+INSERT INTO `user_good` VALUES ('179', '18', '170');
+INSERT INTO `user_good` VALUES ('180', '14', '295');
+INSERT INTO `user_good` VALUES ('181', '12', '305');
+INSERT INTO `user_good` VALUES ('182', '10', '399');
+INSERT INTO `user_good` VALUES ('183', '18', '375');
+INSERT INTO `user_good` VALUES ('184', '8', '334');
+INSERT INTO `user_good` VALUES ('185', '17', '127');
+INSERT INTO `user_good` VALUES ('186', '15', '91');
+INSERT INTO `user_good` VALUES ('187', '8', '280');
+INSERT INTO `user_good` VALUES ('188', '12', '239');
+INSERT INTO `user_good` VALUES ('189', '12', '301');
+INSERT INTO `user_good` VALUES ('190', '1', '296');
+INSERT INTO `user_good` VALUES ('191', '17', '173');
+INSERT INTO `user_good` VALUES ('192', '11', '373');
+INSERT INTO `user_good` VALUES ('193', '2', '134');
+INSERT INTO `user_good` VALUES ('194', '16', '126');
+INSERT INTO `user_good` VALUES ('195', '10', '346');
+INSERT INTO `user_good` VALUES ('196', '17', '334');
+INSERT INTO `user_good` VALUES ('197', '14', '220');
+INSERT INTO `user_good` VALUES ('198', '10', '348');
+INSERT INTO `user_good` VALUES ('199', '11', '379');
+INSERT INTO `user_good` VALUES ('200', '19', '208');
+INSERT INTO `user_good` VALUES ('201', '8', '367');
+INSERT INTO `user_good` VALUES ('202', '18', '215');
+INSERT INTO `user_good` VALUES ('203', '15', '396');
+INSERT INTO `user_good` VALUES ('204', '19', '242');
+INSERT INTO `user_good` VALUES ('205', '8', '59');
+INSERT INTO `user_good` VALUES ('206', '11', '182');
+INSERT INTO `user_good` VALUES ('207', '11', '73');
+INSERT INTO `user_good` VALUES ('208', '11', '74');
+INSERT INTO `user_good` VALUES ('209', '12', '285');
+INSERT INTO `user_good` VALUES ('210', '2', '104');
+INSERT INTO `user_good` VALUES ('211', '12', '265');
+INSERT INTO `user_good` VALUES ('212', '5', '145');
+INSERT INTO `user_good` VALUES ('213', '19', '35');
+INSERT INTO `user_good` VALUES ('214', '10', '180');
+INSERT INTO `user_good` VALUES ('215', '20', '48');
+INSERT INTO `user_good` VALUES ('216', '3', '273');
+INSERT INTO `user_good` VALUES ('217', '1', '283');
+INSERT INTO `user_good` VALUES ('218', '1', '323');
+INSERT INTO `user_good` VALUES ('219', '7', '221');
+INSERT INTO `user_good` VALUES ('220', '19', '372');
+INSERT INTO `user_good` VALUES ('221', '13', '27');
+INSERT INTO `user_good` VALUES ('222', '19', '24');
+INSERT INTO `user_good` VALUES ('223', '6', '52');
+INSERT INTO `user_good` VALUES ('224', '17', '140');
+INSERT INTO `user_good` VALUES ('225', '2', '217');
+INSERT INTO `user_good` VALUES ('226', '14', '345');
+INSERT INTO `user_good` VALUES ('227', '5', '301');
+INSERT INTO `user_good` VALUES ('228', '4', '108');
+INSERT INTO `user_good` VALUES ('229', '19', '118');
+INSERT INTO `user_good` VALUES ('230', '13', '153');
+INSERT INTO `user_good` VALUES ('231', '15', '258');
+INSERT INTO `user_good` VALUES ('232', '11', '301');
+INSERT INTO `user_good` VALUES ('233', '8', '151');
+INSERT INTO `user_good` VALUES ('234', '13', '285');
+INSERT INTO `user_good` VALUES ('235', '17', '30');
+INSERT INTO `user_good` VALUES ('236', '13', '133');
+INSERT INTO `user_good` VALUES ('237', '13', '209');
+INSERT INTO `user_good` VALUES ('238', '9', '163');
+INSERT INTO `user_good` VALUES ('239', '17', '278');
+INSERT INTO `user_good` VALUES ('240', '6', '383');
+INSERT INTO `user_good` VALUES ('241', '13', '135');
+INSERT INTO `user_good` VALUES ('242', '20', '396');
+INSERT INTO `user_good` VALUES ('243', '13', '48');
+INSERT INTO `user_good` VALUES ('244', '11', '133');
+INSERT INTO `user_good` VALUES ('245', '19', '294');
+INSERT INTO `user_good` VALUES ('246', '13', '181');
+INSERT INTO `user_good` VALUES ('247', '9', '302');
+INSERT INTO `user_good` VALUES ('248', '2', '382');
+INSERT INTO `user_good` VALUES ('249', '10', '256');
+INSERT INTO `user_good` VALUES ('250', '11', '5');
+INSERT INTO `user_good` VALUES ('251', '15', '254');
+INSERT INTO `user_good` VALUES ('252', '7', '146');
+INSERT INTO `user_good` VALUES ('253', '20', '277');
+INSERT INTO `user_good` VALUES ('254', '2', '332');
+INSERT INTO `user_good` VALUES ('255', '10', '204');
+INSERT INTO `user_good` VALUES ('256', '11', '314');
+INSERT INTO `user_good` VALUES ('257', '10', '1');
+INSERT INTO `user_good` VALUES ('258', '16', '260');
+INSERT INTO `user_good` VALUES ('259', '3', '332');
+INSERT INTO `user_good` VALUES ('260', '4', '270');
+INSERT INTO `user_good` VALUES ('261', '5', '55');
+INSERT INTO `user_good` VALUES ('262', '3', '24');
+INSERT INTO `user_good` VALUES ('263', '2', '238');
+INSERT INTO `user_good` VALUES ('264', '8', '348');
+INSERT INTO `user_good` VALUES ('265', '12', '199');
+INSERT INTO `user_good` VALUES ('266', '7', '55');
+INSERT INTO `user_good` VALUES ('267', '7', '97');
+INSERT INTO `user_good` VALUES ('268', '1', '51');
+INSERT INTO `user_good` VALUES ('269', '6', '146');
+INSERT INTO `user_good` VALUES ('270', '17', '45');
+INSERT INTO `user_good` VALUES ('271', '20', '118');
+INSERT INTO `user_good` VALUES ('272', '20', '367');
+INSERT INTO `user_good` VALUES ('273', '19', '143');
+INSERT INTO `user_good` VALUES ('274', '18', '58');
+INSERT INTO `user_good` VALUES ('275', '12', '313');
+INSERT INTO `user_good` VALUES ('276', '11', '293');
+INSERT INTO `user_good` VALUES ('277', '15', '25');
+INSERT INTO `user_good` VALUES ('278', '1', '172');
+INSERT INTO `user_good` VALUES ('279', '1', '13');
+INSERT INTO `user_good` VALUES ('280', '18', '157');
+INSERT INTO `user_good` VALUES ('281', '13', '237');
+INSERT INTO `user_good` VALUES ('282', '5', '18');
+INSERT INTO `user_good` VALUES ('283', '5', '124');
+INSERT INTO `user_good` VALUES ('284', '14', '83');
+INSERT INTO `user_good` VALUES ('285', '5', '229');
+INSERT INTO `user_good` VALUES ('286', '16', '311');
+INSERT INTO `user_good` VALUES ('287', '18', '297');
+INSERT INTO `user_good` VALUES ('288', '11', '359');
+INSERT INTO `user_good` VALUES ('289', '15', '164');
+INSERT INTO `user_good` VALUES ('290', '2', '292');
+INSERT INTO `user_good` VALUES ('291', '1', '108');
+INSERT INTO `user_good` VALUES ('292', '6', '43');
+INSERT INTO `user_good` VALUES ('293', '17', '242');
+INSERT INTO `user_good` VALUES ('294', '20', '227');
+INSERT INTO `user_good` VALUES ('295', '9', '241');
+INSERT INTO `user_good` VALUES ('296', '11', '231');
+INSERT INTO `user_good` VALUES ('297', '16', '335');
+INSERT INTO `user_good` VALUES ('298', '19', '131');
+INSERT INTO `user_good` VALUES ('299', '17', '47');
+INSERT INTO `user_good` VALUES ('300', '6', '336');
+INSERT INTO `user_good` VALUES ('301', '20', '38');
+INSERT INTO `user_good` VALUES ('302', '16', '63');
+INSERT INTO `user_good` VALUES ('303', '4', '304');
+INSERT INTO `user_good` VALUES ('304', '6', '347');
+INSERT INTO `user_good` VALUES ('305', '12', '255');
+INSERT INTO `user_good` VALUES ('306', '13', '387');
+INSERT INTO `user_good` VALUES ('307', '16', '67');
+INSERT INTO `user_good` VALUES ('308', '6', '152');
+INSERT INTO `user_good` VALUES ('309', '20', '175');
+INSERT INTO `user_good` VALUES ('310', '1', '115');
+INSERT INTO `user_good` VALUES ('311', '1', '207');
+INSERT INTO `user_good` VALUES ('312', '19', '20');
+INSERT INTO `user_good` VALUES ('313', '12', '219');
+INSERT INTO `user_good` VALUES ('314', '2', '132');
+INSERT INTO `user_good` VALUES ('315', '12', '291');
+INSERT INTO `user_good` VALUES ('316', '9', '279');
+INSERT INTO `user_good` VALUES ('317', '7', '278');
+INSERT INTO `user_good` VALUES ('318', '1', '65');
+INSERT INTO `user_good` VALUES ('319', '8', '108');
+INSERT INTO `user_good` VALUES ('320', '6', '352');
+INSERT INTO `user_good` VALUES ('321', '14', '284');
+INSERT INTO `user_good` VALUES ('322', '7', '3');
+INSERT INTO `user_good` VALUES ('323', '6', '101');
+INSERT INTO `user_good` VALUES ('324', '5', '121');
+INSERT INTO `user_good` VALUES ('325', '11', '183');
+INSERT INTO `user_good` VALUES ('326', '8', '111');
+INSERT INTO `user_good` VALUES ('327', '15', '215');
+INSERT INTO `user_good` VALUES ('328', '7', '60');
+INSERT INTO `user_good` VALUES ('329', '10', '299');
+INSERT INTO `user_good` VALUES ('330', '2', '81');
+INSERT INTO `user_good` VALUES ('331', '1', '75');
+INSERT INTO `user_good` VALUES ('332', '5', '8');
+INSERT INTO `user_good` VALUES ('333', '10', '384');
+INSERT INTO `user_good` VALUES ('334', '6', '77');
+INSERT INTO `user_good` VALUES ('335', '2', '373');
+INSERT INTO `user_good` VALUES ('336', '3', '77');
+INSERT INTO `user_good` VALUES ('337', '11', '53');
+INSERT INTO `user_good` VALUES ('338', '5', '5');
+INSERT INTO `user_good` VALUES ('339', '5', '191');
+INSERT INTO `user_good` VALUES ('340', '6', '26');
+INSERT INTO `user_good` VALUES ('341', '20', '29');
+INSERT INTO `user_good` VALUES ('342', '11', '179');
+INSERT INTO `user_good` VALUES ('343', '12', '240');
+INSERT INTO `user_good` VALUES ('344', '8', '309');
+INSERT INTO `user_good` VALUES ('345', '12', '354');
+INSERT INTO `user_good` VALUES ('346', '19', '23');
+INSERT INTO `user_good` VALUES ('347', '1', '100');
+INSERT INTO `user_good` VALUES ('348', '15', '320');
+INSERT INTO `user_good` VALUES ('349', '10', '349');
+INSERT INTO `user_good` VALUES ('350', '8', '109');
+INSERT INTO `user_good` VALUES ('351', '8', '182');
+INSERT INTO `user_good` VALUES ('352', '18', '280');
+INSERT INTO `user_good` VALUES ('353', '6', '369');
+INSERT INTO `user_good` VALUES ('354', '16', '33');
+INSERT INTO `user_good` VALUES ('355', '13', '327');
+INSERT INTO `user_good` VALUES ('356', '1', '386');
+INSERT INTO `user_good` VALUES ('357', '17', '282');
+INSERT INTO `user_good` VALUES ('358', '19', '104');
+INSERT INTO `user_good` VALUES ('359', '5', '257');
+INSERT INTO `user_good` VALUES ('360', '15', '69');
+INSERT INTO `user_good` VALUES ('361', '20', '264');
+INSERT INTO `user_good` VALUES ('362', '20', '366');
+INSERT INTO `user_good` VALUES ('363', '3', '331');
+INSERT INTO `user_good` VALUES ('364', '13', '74');
+INSERT INTO `user_good` VALUES ('365', '19', '258');
+INSERT INTO `user_good` VALUES ('366', '15', '108');
+INSERT INTO `user_good` VALUES ('367', '19', '79');
+INSERT INTO `user_good` VALUES ('368', '11', '121');
+INSERT INTO `user_good` VALUES ('369', '12', '3');
+INSERT INTO `user_good` VALUES ('370', '9', '388');
+INSERT INTO `user_good` VALUES ('371', '17', '284');
+INSERT INTO `user_good` VALUES ('372', '1', '140');
+INSERT INTO `user_good` VALUES ('373', '1', '361');
+INSERT INTO `user_good` VALUES ('374', '20', '43');
+INSERT INTO `user_good` VALUES ('375', '11', '27');
+INSERT INTO `user_good` VALUES ('376', '11', '37');
+INSERT INTO `user_good` VALUES ('377', '11', '137');
+INSERT INTO `user_good` VALUES ('378', '1', '88');
+INSERT INTO `user_good` VALUES ('379', '6', '6');
+INSERT INTO `user_good` VALUES ('380', '9', '355');
+INSERT INTO `user_good` VALUES ('381', '20', '300');
+INSERT INTO `user_good` VALUES ('382', '13', '181');
+INSERT INTO `user_good` VALUES ('383', '17', '250');
+INSERT INTO `user_good` VALUES ('384', '11', '351');
+INSERT INTO `user_good` VALUES ('385', '3', '65');
+INSERT INTO `user_good` VALUES ('386', '8', '220');
+INSERT INTO `user_good` VALUES ('387', '20', '185');
+INSERT INTO `user_good` VALUES ('388', '19', '136');
+INSERT INTO `user_good` VALUES ('389', '19', '332');
+INSERT INTO `user_good` VALUES ('390', '2', '66');
+INSERT INTO `user_good` VALUES ('391', '8', '83');
+INSERT INTO `user_good` VALUES ('392', '6', '90');
+INSERT INTO `user_good` VALUES ('393', '6', '391');
+INSERT INTO `user_good` VALUES ('394', '13', '74');
+INSERT INTO `user_good` VALUES ('395', '4', '380');
+INSERT INTO `user_good` VALUES ('396', '5', '53');
+INSERT INTO `user_good` VALUES ('397', '3', '371');
+INSERT INTO `user_good` VALUES ('398', '10', '35');
+INSERT INTO `user_good` VALUES ('399', '19', '39');
