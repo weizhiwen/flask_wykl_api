@@ -1,8 +1,9 @@
 from math import ceil
 
 from flask import Flask, send_file
-from db import get_db, select, select_one
+from db import select, select_one
 from status_code import *
+from recommend import recommend1
 app = Flask(__name__)
 
 
@@ -49,6 +50,22 @@ def get_good_by_id(id):
              'title': row[5], 'taxation': row[6], 'explains': row[7], 'service': row[8], 'eva_score': row[9],
              'eva_num': row[10], 'sun_num': row[11], 'goods_prma': row[12]}]
     return data_response(STATUS_CODE_200, data)
+
+
+# 获取购买过此商品的用户还购买过推荐商品的 API，/api/recommend/<int:recommend_id>/<int:good_id>/<int:count>
+@app.route('/api/goods/recommend/<int:recommend_id>/<int:good_id>/<int:count>')
+def get_recommend_goods(recommend_id, good_id, count):
+    print('传过来的值为 recommend_id：' + str(recommend_id) + 'good_id：' + str(good_id) + 'count：' + str(count))
+    if recommend_id == 1:
+        data = recommend1(good_id, count)
+    elif recommend_id == 2:
+        pass
+    elif recommend_id == 3:
+        pass
+    else:
+        return status_response(STATUS_CODE_400)
+    return data_response(STATUS_CODE_200, data)
+
 
 # 返回页面
 @app.route('/detail/<int:id>')
