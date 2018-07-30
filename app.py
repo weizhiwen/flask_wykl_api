@@ -4,6 +4,7 @@ from flask import Flask, send_file
 from db import select, select_one
 from status_code import *
 from recommend1 import recommend1
+from recommend2 import recommend2
 app = Flask(__name__)
 
 
@@ -52,15 +53,19 @@ def get_good_by_id(id):
     return data_response(STATUS_CODE_200, data)
 
 
-# 获取购买过此商品的用户还购买过推荐商品的 API，/api/recommend/<int:recommend_id>/<int:good_id>/<int:count>
+# 获取购买过此商品的用户还购买过推荐商品的 API，/api/goods/recommend1/<int:good_id>/<int:count>
 @app.route('/api/goods/recommend1/<int:good_id>/<int:count>')
-def get_recommend_goods(good_id, count):
+def get_recommend1_goods(good_id, count):
     # print('传过来的值为 recommend_id：' + str(recommend_id) + 'good_id：' + str(good_id) + 'count：' + str(count))
     data = recommend1(good_id, count)
     return data_response(STATUS_CODE_200, data)
 
-
-
+# 根据用户购买过商品的余弦相似度推荐商品的 API，/api/goods/recommend2/<int:user_id>/<int:user_num>/<int:recommend_num>
+@app.route('/api/goods/recommend2/<int:user_id>/<int:user_num>/<int:recommend_num>')
+def get_recommend2_goods(user_id, user_num, recommend_num):
+    # print('传过来的值为 user_id：' + str(user_id) + 'good_id：' + str(user_num) + 'count：' + str(recommend_num))
+    data = recommend2(user_id, user_num, recommend_num)
+    return data_response(STATUS_CODE_200, data)
 
 # 返回页面
 @app.route('/detail/<int:id>')

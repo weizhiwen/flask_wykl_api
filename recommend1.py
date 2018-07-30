@@ -8,7 +8,7 @@ def get_data(good_id):
             'FROM user_good u_g, goods g WHERE userId in (SELECT userId FROM user_good WHERE goodId = %d) ' \
                 'AND u_g.goodId = g.good_id' %good_id
     result = select(sql)
-    # print(result)
+    print(result)
     data = {} # 数据矩阵
     for row in result:
         if row[0] not in data:
@@ -36,11 +36,11 @@ def recommend1(good_id, count):
         goods_count_sort = sorted(goods_count.items(), key=itemgetter(1), reverse=True)[:count]
     else:
         goods_count_sort = goods_count
-    print('商品出现的频次排序', goods_count_sort)
+    # print('商品出现的频次排序', goods_count_sort)
     count_sort = []
     for good_id in goods_count_sort:
         count_sort.append(good_id[0])
-    # print('所要推荐的商品的序号', count_sort)
+    print('所要推荐的商品的序号', count_sort)
     # print('商品信息数据', goods_data, end='\n')
     # print('要推荐的商品信息')
     recommend_goods = []
