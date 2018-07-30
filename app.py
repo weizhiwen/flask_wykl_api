@@ -53,17 +53,10 @@ def get_good_by_id(id):
 
 
 # 获取购买过此商品的用户还购买过推荐商品的 API，/api/recommend/<int:recommend_id>/<int:good_id>/<int:count>
-@app.route('/api/goods/recommend/<int:recommend_id>/<int:good_id>/<int:count>')
-def get_recommend_goods(recommend_id, good_id, count):
-    print('传过来的值为 recommend_id：' + str(recommend_id) + 'good_id：' + str(good_id) + 'count：' + str(count))
-    if recommend_id == 1:
-        data = recommend1(good_id, count)
-    elif recommend_id == 2:
-        pass
-    elif recommend_id == 3:
-        pass
-    else:
-        return status_response(STATUS_CODE_400)
+@app.route('/api/goods/recommend1/<int:good_id>/<int:count>')
+def get_recommend_goods(good_id, count):
+    # print('传过来的值为 recommend_id：' + str(recommend_id) + 'good_id：' + str(good_id) + 'count：' + str(count))
+    data = recommend1(good_id, count)
     return data_response(STATUS_CODE_200, data)
 
 
