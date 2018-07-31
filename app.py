@@ -5,6 +5,7 @@ from db import select, select_one
 from status_code import *
 from recommend1 import recommend1
 from recommend2 import recommend2
+from recommend3 import recommend3
 app = Flask(__name__)
 
 # beken code
@@ -70,9 +71,11 @@ def get_recommend2_goods(user_id, user_num, recommend_num):
 
 
 # 根据商品的标题分词推荐关联高的商品的 API
-@app.route('/api/goods/recommend3/')
-def get_recommend3_goods():
-    pass
+@app.route('/api/goods/recommend3/<int:current_page>/<int:recommend_num>')
+def get_recommend3_goods(current_page, recommend_num):
+    # print('传过来的值为 current_page：', str(current_page) + ',goods_num:', str(goods_num))
+    data = recommend3(current_page, recommend_num)
+    return data_response(STATUS_CODE_200, data)
 
 
 if __name__ == '__main__':
