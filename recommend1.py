@@ -4,16 +4,13 @@ from db import select
 
 # 读出所要的数据并形成矩阵
 def get_data(good_id):
-    sql = 'SELECT u_g.userId, u_g.goodId, g.good_img, g.title, g.eva_num ' \
-            'FROM user_good u_g, goods g WHERE userId in (SELECT userId FROM user_good WHERE goodId = %d) ' \
-                'AND u_g.goodId = g.good_id' %good_id
+    sql = 'SELECT u_g.userId, u_g.goodsId, g.img, g.title, g.eva_num FROM user_goods u_g, goods g WHERE userId in (SELECT userId FROM user_goods WHERE goodsId = %d) AND u_g.goodsId = g.id' %good_id
     result = select(sql)
-    print(result)
     data = {} # 数据矩阵
     for row in result:
         if row[0] not in data:
             data[row[0]] = []
-        data[row[0]].append({'good_id':row[1],'good_img': row[2],'title': row[3],'eva_num': row[4]})
+        data[row[0]].append({'id':row[1],'img': row[2],'title': row[3],'eva_num': row[4]})
     # print(data)
     return data
 
@@ -24,12 +21,12 @@ def recommend1(good_id, count):
     goods_data = [] # 商品信息数组
     for user in data.keys():
         for good in data[user]:
-            if good['good_id'] == good_id:
+            if good['id'] == good_id:
                 continue
-            if good['good_id'] not in goods_count:
-                goods_count.setdefault(good['good_id'], 0)
-            goods_count[good['good_id']] += 1
-            if good['good_id'] not in goods_data:
+            if good['id'] not in goods_count:
+                goods_count.setdefault(good['id'], 0)
+            goods_count[good['id']] += 1
+            if good['id'] not in goods_data:
                 goods_data.append(good)
     # print('商品出现的频次', goods_count)
     if count < len(goods_count):
@@ -46,7 +43,7 @@ def recommend1(good_id, count):
     recommend_goods = []
     for id in count_sort:
         for good in goods_data:
-            if id == good['good_id'] and good not in recommend_goods:
+            if id == good['id'] and good not in recommend_goods:
                 # print('item', good)
                 recommend_goods.append(good)
     return recommend_goods

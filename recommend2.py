@@ -5,7 +5,7 @@ from db import select
 
 # 读出所要的数据并形成矩阵
 def get_data():
-    sql = 'SELECT u_g.userId, u_g.goodId, g.good_img, g.title, g.eva_num FROM user_good u_g,	goods g WHERE	u_g.goodId = g.good_id'
+    sql = 'SELECT u_g.userId, u_g.goodsId, g.img, g.title, g.eva_num FROM user_goods u_g, goods g WHERE u_g.goodsId = g.id'
     result = select(sql)
     # print('查询结果为')
     # for row in result:
@@ -32,7 +32,7 @@ def recommend2(user_id, user_num, recommend_num):
         if row[0] not in user_goods_matrix:
             user_goods_info.setdefault(row[0],[])
             user_goods_matrix.setdefault(row[0], [])
-        user_goods_info[row[0]].append({'good_id':row[1],'good_img': row[2],'title': row[3],'eva_num': row[4]})
+        user_goods_info[row[0]].append({'id':row[1],'img': row[2],'title': row[3],'eva_num': row[4]})
         user_goods_matrix[row[0]].append(row[1])
     # print('带有详细信息的数据矩阵')
     # for key, varlue in user_goods_info.items():
@@ -115,7 +115,7 @@ def recommend2(user_id, user_num, recommend_num):
     for id in count_sort:
         for good in goods_data:
             # print('item', good)
-            if id == good['good_id'] and good not in recommend_goods:
+            if id == good['id'] and good not in recommend_goods:
                 recommend_goods.append(good)
 
     # print('推荐商品')
