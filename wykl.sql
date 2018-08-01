@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-07-31 16:16:54
+Date: 2018-08-01 08:25:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4156,3 +4156,82 @@ INSERT INTO `user_goods` VALUES ('2524', '20', '93');
 INSERT INTO `user_goods` VALUES ('2525', '20', '94');
 INSERT INTO `user_goods` VALUES ('2526', '20', '96');
 INSERT INTO `user_goods` VALUES ('2527', '20', '98');
+
+-- ----------------------------
+-- Table structure for word
+-- ----------------------------
+DROP TABLE IF EXISTS `word`;
+CREATE TABLE `word` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `words` varchar(30) NOT NULL,
+  `explains` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of word
+-- ----------------------------
+INSERT INTO `word` VALUES ('1', '[\'碧柔\', \'水活\', \'防晒霜\', \'套餐\']', '第1页的关键词');
+INSERT INTO `word` VALUES ('2', '[\'喷雾\', \'套餐\', \'瓶装\', \'资生堂\']', '第2页的关键词');
+INSERT INTO `word` VALUES ('3', '[\'防晒霜\', \'喷雾\', \'碧柔\', \'资生堂\']', '第3页的关键词');
+INSERT INTO `word` VALUES ('4', '[\'防晒霜\', \'防晒乳\', \'喷雾\', \'同款\']', '第4页的关键词');
+INSERT INTO `word` VALUES ('5', '[\'防晒霜\', \'同款\', \'曼秀雷敦\', \'喷雾\']', '第5页的关键词');
+INSERT INTO `word` VALUES ('6', '[\'喷雾\', \'防晒霜\', \'水感\', \'防晒乳\']', '第6页的关键词');
+INSERT INTO `word` VALUES ('7', '[\'防晒霜\', \'喷雾\', \'防晒乳\', \'太阳伞\']', '第7页的关键词');
+INSERT INTO `word` VALUES ('8', '[\'防晒霜\', \'喷雾\', \'防晒乳\', \'瓶装\']', '第8页的关键词');
+INSERT INTO `word` VALUES ('9', '[\'喷雾\', \'防晒霜\', \'晴雨伞\', \'防晒乳\']', '第9页的关键词');
+INSERT INTO `word` VALUES ('10', '[\'防晒霜\', \'喷雾\', \'防晒乳\', \'税费\']', '第10页的关键词');
+INSERT INTO `word` VALUES ('11', '[\'防晒霜\', \'喷雾\', \'同款\', \'税费\']', '第11页的关键词');
+INSERT INTO `word` VALUES ('12', '[\'防晒霜\', \'防晒乳\', \'同款\', \'晴雨伞\']', '第12页的关键词');
+INSERT INTO `word` VALUES ('13', '[\'喷雾\', \'防晒乳\', \'晴雨伞\', \'太阳伞\']', '第13页的关键词');
+INSERT INTO `word` VALUES ('14', '[\'防晒霜\', \'防晒露\', \'太阳伞\', \'喷雾\']', '第14页的关键词');
+INSERT INTO `word` VALUES ('15', '[\'防晒霜\', \'晴雨伞\', \'施华洛\', \'防晒乳\']', '第15页的关键词');
+INSERT INTO `word` VALUES ('16', '[\'防晒霜\', \'紫外线\', \'太阳伞\', \'喷雾\']', '第16页的关键词');
+INSERT INTO `word` VALUES ('17', '[\'喷雾\', \'防晒霜\', \'税费\', \'遮阳伞\']', '第17页的关键词');
+INSERT INTO `word` VALUES ('18', '[\'黑胶\', \'太阳伞\', \'遮阳伞\', \'晴雨伞\']', '第18页的关键词');
+INSERT INTO `word` VALUES ('19', '[\'防晒霜\', \'黑胶\', \'晴雨伞\', \'太阳伞\']', '第19页的关键词');
+INSERT INTO `word` VALUES ('20', '[\'隔离霜\', \'美白\', \'速干\', \'兰芝\']', '第20页的关键词');
+INSERT INTO `word` VALUES ('21', '[\'隔离霜\', \'姬芮\', \'苏菲\', \'美白\']', '第21页的关键词');
+INSERT INTO `word` VALUES ('22', '[\'美白\', \'隔离霜\', \'姬芮\', \'真皙\']', '第22页的关键词');
+INSERT INTO `word` VALUES ('23', '[\'粉底液\', \'外套\', \'考拉\', \'皮肤\']', '第23页的关键词');
+INSERT INTO `word` VALUES ('24', '[\'考拉\', \'用膏\', \'番木瓜\', \'卢卡斯\']', '第24页的关键词');
+INSERT INTO `word` VALUES ('25', '[\'外套\', \'皮肤\', \'时尚\', \'开衫\']', '第25页的关键词');
+INSERT INTO `word` VALUES ('26', '[\'考拉\', \'宝宝\', \'美白\', \'精华液\']', '第26页的关键词');
+INSERT INTO `word` VALUES ('27', '[\'外套\', \'宝宝\', \'儿童\', \'皮肤\']', '第27页的关键词');
+INSERT INTO `word` VALUES ('28', '[\'速干\', \'女童\', \'男士\', \'曼秀雷敦\']', '第28页的关键词');
+INSERT INTO `word` VALUES ('29', '[\'新款\', \'偏光\', \'太阳镜\', \'气垫\']', '第29页的关键词');
+INSERT INTO `word` VALUES ('30', '[\'皮肤\', \'宝宝\', \'遮阳帽\', \'新款\']', '第30页的关键词');
+INSERT INTO `word` VALUES ('31', '[\'气垫\', \'天堂伞\', \'版海\', \'朱正廷\']', '第31页的关键词');
+INSERT INTO `word` VALUES ('32', '[\'垃圾桶\', \'考拉\', \'雨伞\', \'晴雨\']', '第32页的关键词');
+INSERT INTO `word` VALUES ('33', '[\'润唇膏\', \'儿童\', \'外套\', \'宝宝\']', '第33页的关键词');
+INSERT INTO `word` VALUES ('34', '[\'宝宝\', \'遮阳帽\', \'雨伞\', \'儿童\']', '第34页的关键词');
+INSERT INTO `word` VALUES ('35', '[\'泳衣\', \'宝宝\', \'女童\', \'粉底液\']', '第35页的关键词');
+INSERT INTO `word` VALUES ('36', '[\'泳衣\', \'T恤\', \'天堂伞\', \'新款\']', '第36页的关键词');
+INSERT INTO `word` VALUES ('37', '[\'粉底\', \'精华\', \'外套\', \'美白\']', '第37页的关键词');
+INSERT INTO `word` VALUES ('38', '[\'气垫\', \'T恤\', \'速干\', \'考拉\']', '第38页的关键词');
+INSERT INTO `word` VALUES ('39', '[\'黑胶\', \'雨伞\', \'粉底液\', \'遮阳伞\']', '第39页的关键词');
+INSERT INTO `word` VALUES ('40', '[\'女童\', \'宝宝\', \'外套\', \'防晒霜\']', '第40页的关键词');
+INSERT INTO `word` VALUES ('41', '[\'同款\', \'厚木\', \'女童\', \'男士\']', '第41页的关键词');
+INSERT INTO `word` VALUES ('42', '[\'防晒霜\', \'新款\', \'儿童\', \'喷雾\']', '第42页的关键词');
+INSERT INTO `word` VALUES ('43', '[\'防晒霜\', \'透气\', \'紫外线\', \'速干\']', '第43页的关键词');
+INSERT INTO `word` VALUES ('44', '[\'紫外线\', \'太阳镜\', \'女童\', \'时尚\']', '第44页的关键词');
+INSERT INTO `word` VALUES ('45', '[\'开衫\', \'凝乳\', \'碧柔\', \'同款\']', '第45页的关键词');
+INSERT INTO `word` VALUES ('46', '[\'运动帽\', \'跑步\', \'防晒霜\', \'透气\']', '第46页的关键词');
+INSERT INTO `word` VALUES ('47', '[\'隔离霜\', \'太阳伞\', \'遮阳伞\', \'紫外线\']', '第47页的关键词');
+INSERT INTO `word` VALUES ('48', '[\'泳衣\', \'男女\', \'防晒霜\', \'儿童\']', '第48页的关键词');
+INSERT INTO `word` VALUES ('49', '[\'防晒霜\', \'T恤\', \'防晒乳\', \'套装\']', '第49页的关键词');
+INSERT INTO `word` VALUES ('50', '[\'棒球帽\', \'太阳伞\', \'遮阳伞\', \'鸭舌帽\']', '第50页的关键词');
+INSERT INTO `word` VALUES ('51', '[\'太阳伞\', \'女童\', \'透气\', \'遮阳伞\']', '第51页的关键词');
+INSERT INTO `word` VALUES ('52', '[\'太阳伞\', \'遮阳伞\', \'新款\', \'防晒霜\']', '第52页的关键词');
+INSERT INTO `word` VALUES ('53', '[\'新款\', \'T恤\', \'长袖\', \'女童\']', '第53页的关键词');
+INSERT INTO `word` VALUES ('54', '[\'新品\', \'太阳镜\', \'跑步\', \'透气\']', '第54页的关键词');
+INSERT INTO `word` VALUES ('55', '[\'童装\', \'男童\', \'泳帽\', \'女童\']', '第55页的关键词');
+INSERT INTO `word` VALUES ('56', '[\'防晒霜\', \'男女\', \'透气\', \'遮阳伞\']', '第56页的关键词');
+INSERT INTO `word` VALUES ('57', '[\'墨镜\', \'万事利\', \'太阳镜\', \'真丝\']', '第57页的关键词');
+INSERT INTO `word` VALUES ('58', '[\'直邮\', \'芦荟\', \'共和国\', \'气垫\']', '第58页的关键词');
+INSERT INTO `word` VALUES ('59', '[\'直邮\', \'女士\', \'遮阳\', \'帽子\']', '第59页的关键词');
+INSERT INTO `word` VALUES ('60', '[\'直邮\', \'遮阳\', \'鸭舌帽\', \'日本\']', '第60页的关键词');
+INSERT INTO `word` VALUES ('61', '[\'遮阳帽\', \'直邮\', \'女士\', \'时尚\']', '第61页的关键词');
+INSERT INTO `word` VALUES ('62', '[\'直邮\', \'遮阳\', \'日本\', \'女士\']', '第62页的关键词');
+INSERT INTO `word` VALUES ('63', '[\'直邮\', \'遮阳\', \'女士\', \'鸭舌帽\']', '第63页的关键词');
+INSERT INTO `word` VALUES ('64', '[\'直邮\', \'女士\', \'日本\', \'遮阳帽\']', '第64页的关键词');
