@@ -53,6 +53,19 @@ def get_good_by_id(id):
     data = [{'id': row[0], 'img': row[1], 'origin_country': row[2], 'brand': row[3], 'tag':row[4], 'title': row[5], 'cell_price': row[6], 'pefer_price': row[7], 'activity': row[8], 'service': row[9], 'explains': row[10], 'eva_score': row[11], 'eva_num': row[12], 'sun_num': row[13]}]
     return data_response(STATUS_CODE_200, data)
 
+# 根据关键字搜索商品的 API，/api/goods/<string:keyword>/<int:goods_num>
+@app.route('/api/search/<string:keyword>/<int:goods_num>')
+def find_goods_by_name(keyword, goods_num):
+    print('keyword', keyword, 'good_num', goods_num)
+    sql = "SELECT id, img, origin_country, brand, tag, title, cell_price, pefer_price, activity, explains, eva_num FROM goods WHERE title LIKE '%%%s%%' LIMIT %d" %(keyword, goods_num)
+    print(sql)
+    result = select(sql)
+    data = []
+    for row in result:
+        data.append(
+            {'id': row[0], 'img': row[1], 'origin_country': row[2], 'brand': row[3], 'tag': row[4], 'title': row[5],
+             'cell_price': row[6], 'pefer_price': row[7], 'activity': row[8], 'explains': row[9], 'eva_num': row[10]})
+    return data_response(STATUS_CODE_200, data)
 
 # 获取购买过此商品的用户还购买过推荐商品的 API，/api/goods/recommend1/<int:good_id>/<int:count>
 @app.route('/api/goods/recommend1/<int:good_id>/<int:count>')
